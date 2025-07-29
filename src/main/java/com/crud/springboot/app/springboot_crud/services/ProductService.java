@@ -17,4 +17,6 @@ public interface ProductService {
 
     Optional<Product> delete(String id);
 
+    boolean existsBySku(String sku);
+
 }

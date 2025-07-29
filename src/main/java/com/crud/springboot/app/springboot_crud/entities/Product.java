@@ -1,5 +1,8 @@
 package com.crud.springboot.app.springboot_crud.entities;
 
+import com.crud.springboot.app.springboot_crud.validation.IsExistsDb;
+import com.crud.springboot.app.springboot_crud.validation.IsRequired;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,14 +24,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    // ConValidation
     @NotEmpty(message = "{NotEmpty.product.name}")
     @Size(min = 3)
     private String name;
 
-    @NotBlank(message = "{NotBlack.product.latname}")
+    // Personalizado
+    @IsRequired
     @Column(name = "lastname")
     @Size(min = 3)
     private String lasname;
+
+    @IsRequired
+    @IsExistsDb
+    private String sku;
 
     public String getId() {
         return id;
@@ -46,12 +55,20 @@ public class Product {
         this.name = name;
     }
 
-    public String getLastname() {
+    public String getLasname() {
         return lasname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLasname(String lastname) {
         this.lasname = lastname;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
 }
