@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.crud.springboot.app.springboot_crud.entities.Courses;
+import com.crud.springboot.app.springboot_crud.entities.Course;
 import com.crud.springboot.app.springboot_crud.repositories.CoursesRepository;
 
 @Service
@@ -21,13 +21,13 @@ public class CoursesServicesImpl implements CoursesServices {
 
     @Transactional
     @Override
-    public Optional<Courses> findById(Integer id) {
+    public Optional<Course> findById(Integer id) {
         return coursesRepository.findById(id);
     }
 
     @Override
-    public List<Courses> findAll() {
-        return (List<Courses>) coursesRepository.findAll();
+    public List<Course> findAll() {
+        return (List<Course>) coursesRepository.findAll();
     }
 
 }

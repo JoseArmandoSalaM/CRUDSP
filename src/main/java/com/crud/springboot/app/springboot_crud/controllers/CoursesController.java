@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crud.springboot.app.springboot_crud.entities.Courses;
+import com.crud.springboot.app.springboot_crud.entities.Course;
 import com.crud.springboot.app.springboot_crud.services.CoursesServices;
 
 @RestController
@@ -23,13 +23,13 @@ public class CoursesController {
     }
 
     @GetMapping
-    public List<Courses> all() {
+    public List<Course> all() {
         return coursesServices.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Integer id) {
-        Optional<Courses> coursesOptional = coursesServices.findById(id);
+        Optional<Course> coursesOptional = coursesServices.findById(id);
 
         if (coursesOptional.isPresent()) {
             return ResponseEntity.ok(coursesOptional.orElseThrow());
