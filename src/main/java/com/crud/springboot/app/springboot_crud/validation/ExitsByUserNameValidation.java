@@ -20,6 +20,10 @@ public class ExitsByUserNameValidation implements ConstraintValidator<ExitsByUse
     @Override
     public boolean isValid(String arg0, ConstraintValidatorContext arg1) {
 
+        if (usersServices == null) {
+            return true;
+        }
+
         return !usersServices.existsByUsername(arg0);
     }
 

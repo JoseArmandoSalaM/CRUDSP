@@ -74,8 +74,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
 
-        Claims claims = Jwts.claims().build();
-        claims.put("authorities", roles);
+        Claims claims = Jwts.claims().add("authorities", new ObjectMapper().writeValueAsString(roles))
+                .add("username", username).build();
 
         String jws = Jwts.builder().subject(username).expiration(new Date(System.currentTimeMillis() + 3600000))
                 .issuedAt(new Date()).claims(claims)
